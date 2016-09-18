@@ -1,0 +1,48 @@
+<div class="jumbotron text-center">
+    <h1>Home Page</h1>
+    
+    <p>{{ message }}</p>
+	
+	<div class="col-md-6">
+	<form name="validate_form" ng-submit="submit(validate_form)" novalidate>
+	  <div class="form-group">
+		<label for="email">Email address:</label>
+		<input type="email" class="form-control" name="email" ng-model="formData.email" ng-pattern=" /^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/"  required>
+			<div class="danger" ng-if="interacted(validate_form.email)" ng-messages="validate_form.email.$error">
+			<div ng-message="required" class="">Email is required</div>
+			<div ng-message="pattern">Invalid E-mail</div> 
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" class="form-control" id="pwd">
+	  </div>
+	  
+	    <div class="form-group">
+             <label class="control-label">User Type</label>
+             <select class="form-control" id="sel1" name="usertype" ng-model="formData.usertype" required>
+             <option value=''>User Type</option>
+             <option ng-repeat="usertype in usertypes" value="{{usertype}}">{{usertype}}</option>
+             </select>
+             <div class="danger" ng-if="interacted(validate_form.usertype)" ng-messages="validate_form.usertype.$error">
+              <div ng-message="required" class="">Required field can not be blank</div>
+             </div>
+        </div>
+		<div class="form-group">
+              <label class="control-label" style="padding-right:15px;">Gender:</label>
+              <label class="radio-inline"><input type="radio" name="gender" value="male" ng-model="formData.gender" ng-required="true">Male</label>
+              <label class="radio-inline"><input type="radio" name="gender" value="female" ng-model="formData.gender" ng-required="true">Female</label>
+             <div class="danger" ng-if="interacted(validate_form.gender)" ng-messages="validate_form.gender.$error">
+              <div ng-message="required" class="">Required field can not be blank</div>
+             </div> 
+        </div>
+			
+	  <div class="checkbox">
+		<label><input type="checkbox"> Remember me</label>
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+ </div>
+</div>
+
+                
